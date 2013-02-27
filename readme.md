@@ -16,7 +16,7 @@ Generate and install the necessary migrations:
 
     rails generate refinery:settings
     rake db:migrate
-    
+
 
 ## How do I Make my Own Settings?
 
@@ -33,7 +33,7 @@ Once the trade show is finished, the client needs to be able to hide it again
 until next year. This is what your ``application.html.erb`` file might look like:
 
     ...
-    <div id='header'>
+    <div id="header">
       <h1>My Company</h1>
 
       <% if ::Refinery::Setting.find_or_set(:show_trade_show_banner, false) %>

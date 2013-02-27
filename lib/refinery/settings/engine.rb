@@ -12,13 +12,16 @@ module Refinery
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
           plugin.name = 'refinery_settings'
-          plugin.menu_match = %r{refinery/settings$}
+          plugin.position = 10000 # put settings plugin at end
+          plugin.hide_from_menu = !Refinery::Settings.enable_interface
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.admin_settings_path }
         end
       end
 
       config.after_initialize do
         Refinery.register_engine(Refinery::Settings)
+        # if you need debug js change .min to .all
+        Refinery::Core.config.register_admin_javascript('refinery/admin/refinery-settings.min')
       end
     end
   end

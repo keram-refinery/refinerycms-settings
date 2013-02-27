@@ -27,3 +27,7 @@ en:
         name: Name
         value: Value
         restricted: Restricted
+    errors:
+      models:
+        refinery/setting:
+          setting_exists: 'Setting with name %{name} already exists'

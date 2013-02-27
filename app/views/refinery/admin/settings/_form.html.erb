@@ -1,54 +1,56 @@
-<%= form_for [refinery, :admin, @setting] do |f| %>
+<%= form_for [refinery, :admin, @setting],
+                      :url => (refinery.admin_setting_path(@setting.id) if @setting.persisted?),
+                      :remote => true do |f| %>
 
   <%= render '/refinery/admin/error_messages', :object => @setting, :include_object_name => true %>
 
-  <div class='field'>
+  <div class="field">
     <%= f.label :name %>
-  <% if action_name =~ /(new)|(create)/ %>
-    <%= f.text_field :name, :class => "larger widest" %>
-  <% else %>
-    <label class='stripped' for='setting_value'>
-      <%= @setting.title %>
-    </label>
-    <span class="preview">- (<%= @setting.name %>)</span>
-  <% end %>
-  <% if current_refinery_user.has_role?(:superuser) && @setting.new_record? %>
-    <div class='field'>
+    <% if @setting.new_record? %>
+      <%= f.text_field :name, :class => 'larger widest' %>
+    <% else %>
+      <label class="stripped" for="setting_value">
+        <%= @setting.title %>
+      </label>
+      <span class="preview">- (<%= @setting.name %>)</span>
+    <% end %>
+  </div>
+  <% if @setting.new_record? %>
+    <div class="field">
       <%= f.label :form_value_type %>
       <%= f.select :form_value_type, ::Refinery::Setting::FORM_VALUE_TYPES -%>
     </div>
+    <div id="holder-check_box" class="field value-field" >
+      <%= f.check_box :value, :disabled => true, :id => 'value-check_box' -%>
+      <%= f.label :value, t('enabled', :scope => 'refinery.admin.settings.form'),
+                  :for => 'value-check_box', :class => 'stripped' -%>
+    </div>
+    <div class="field value-field" id="holder-text_area">
+      <%= f.label :value, :for => 'value-text_area' -%>
+      <%= f.text_area :value, :value => @setting.form_value,
+                  :id => 'value-text_area', :class => 'widest', :rows => 3 -%>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= setting_title(f) %>
+      <%= setting_field(f, t(@setting.name, :scope => 'refinery.admin.settings.form.help', :default => '')) %>
+    </div>
   <% end %>
-  <% unless action_name =~ /(new)|(create)/ or (help = t(@setting.name, :scope => 'refinery.admin.settings.form.help', :default => '')).blank? or @setting.form_value_type == 'check_box'  %>
-    <p>
-      <span><%= help %></span>
-    </p>
-  <% end %>
+
   <% if current_refinery_user.has_role?(:superuser) %>
-    <span class='label_with_help'>
-      <%= f.label :restricted %>
-      <%= refinery_help_tag t('restricted', :scope => 'refinery.admin.settings.form.help') %>
-    </span>
-    <%= f.check_box :restricted %>
-    <%= f.label :restricted, t('.yes_make_this_setting_restricted'), :class => 'stripped' %>
+    <div class="field">
+      <%= refinery_form_field f, :check_box, :restricted,
+                  :label => true,
+                  :help => t('restricted', :scope => 'refinery.admin.settings.form.help') -%>
+      <%= f.label :restricted, t('.yes_make_this_setting_restricted'), :class => 'stripped' %>
+    </div>
   <% end %>
-  </div>
-  <div class='field'>
-    <%= setting_title(f) %>
-    <%= setting_field(f, help) %>
-  </div>
 
   <%= render '/refinery/admin/form_actions', :f => f,
-             :continue_editing => false,
-             :hide_cancel => from_dialog?,
-             :submit_button_title => t('.restart_may_be_in_order_html'),
-             :delete_title => t('delete', :scope => 'refinery.admin.settings'),
-             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @setting.title),
-             :hide_delete => (@setting.new_record? or !@setting.destroyable or from_dialog?) %>
+              :continue_editing => false,
+              :hide_cancel => false,
+              :submit_button_title => t('.restart_may_be_in_order_html'),
+              :delete_title => t('delete', :scope => 'refinery.admin.settings'),
+              :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @setting.title),
+              :hide_delete => (@setting.new_record? or !@setting.destroyable) %>
 <% end -%>
-<% content_for :javascripts do %>
-  <script>
-    $('#setting_form_value_type').change(function(e) {
-      window.location = location_url + ((location_url.indexOf("?") > -1 ? "&" : "?") + "form_value_type=" + $(this).val());
-    });
-  </script>
-<% end if current_refinery_user.has_role?(:superuser) %>
