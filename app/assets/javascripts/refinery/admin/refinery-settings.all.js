@@ -1,4 +1,7 @@
-// Source: src/refinery-settings/scripts/admin/new_setting_form.js
+
+(function (window, $) {
+
+// Source: ~/refinery-settings/scripts/admin/new_setting_form.js
     /**
      * @constructor
      * @class refinery.admin.NewSettingForm
@@ -8,17 +11,7 @@
 
         name: 'NewSettingForm',
 
-        module: 'admin',
-
-        objectMethods: {
-            toUserInterface: function (holder) {
-                var setting_form = holder.find('#new_setting');
-
-                if (setting_form.length > 0) {
-                    refinery.n('admin.NewSettingForm').init(setting_form);
-                }
-            }
-        },
+        module: 'admin.settings',
 
         /**
          * Switch setting type between boolean and text
@@ -47,8 +40,9 @@
             var that = this,
                 input_value_type = holder.find('#setting_form_value_type');
 
-            if (this.is('initialisable')) {
+            if (that.is('initialisable')) {
                 that.is('initialising', true);
+                refinery.Object.attach(that.uid, holder);
                 that.holder = holder;
                 that.enable_value_type(input_value_type.find('option:selected').val());
 
@@ -56,14 +50,30 @@
                     that.enable_value_type(input_value_type.find('option:selected').val());
                 });
 
-                this.is({'initialised': true, 'initialising': false});
-                this.trigger('init');
+                that.is({'initialised': true, 'initialising': false});
+                that.trigger('init');
             }
 
-            return this;
+            return that;
         }
     });
-// Source: src/refinery-settings/scripts/admin/dialogs/settings_dialog.js
+
+    /**
+     * Form initialization
+     *
+     * @expose
+     * @param  {jQuery} holder
+     * @return {undefined}
+     */
+    refinery.admin.ui.settingsNewSettingForm = function (holder) {
+        var setting_form = holder.find('#new_setting');
+
+        if (setting_form.length > 0) {
+            refinery('admin.settings.NewSettingForm').init(setting_form);
+        }
+    };
+
+// Source: ~/refinery-settings/scripts/admin/dialogs/settings_dialog.js
     /**
      * @constructor
      * @class refinery.admin.SettingsDialog
@@ -71,10 +81,13 @@
      * @param {Object=} options
      */
     refinery.Object.create({
-        objectPrototype: refinery.n('admin.Dialog', {
+        objectPrototype: refinery('admin.Dialog', {
             title: t('refinery.admin.settings_dialog_title'),
             url: '/refinery/dialogs/settings'
         }, true),
 
-        name: 'SettingsDialog'
+        name: 'SettingsDialog',
+
+        module: 'admin.settings'
     });
+}(window, jQuery));

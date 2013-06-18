@@ -1,0 +1,14 @@
+gem 'mysql2'
+
+gem 'rails', '~> 4.0.0'
+gem 'railties', '~> 4.0.0'
+gem 'devise', :path => '../devise' #:git => 'git://github.com/plataformatec/devise.git', :branch => 'rails4'
+gem 'database_cleaner', :path => '../database_cleaner' #:git => 'git://github.com/bmabey/database_cleaner.git', :branch => 'master'
+
+gem 'decorators', :path => '../decorators'
+gem 'awesome_nested_set', :path => '../awesome_nested_set'
+
+gem 'globalize3', :path => '../globalize3'
+gem 'friendly_id', :path => '../friendly_id'
+gem 'routing-filter', :path => '../routing-filter'
+gem 'seo_meta', :path => '../seo_meta'

@@ -14,10 +14,20 @@ module Refinery
       ['Checkbox', BOOLEAN_VALUE_TYPE]
     ]
 
+    REPLACEMENTS = {'true' => true, 'false' => false, '1' => true, '0' => false}
+
     validates :name, presence: true
     validates_with SettingNameUniquenessValidator, on: :create
 
     serialize :value # stores into YAML format
+
+    before_save do |setting|
+      if !!setting.value == setting.value
+        setting.form_value_type = BOOLEAN_VALUE_TYPE
+      elsif setting.form_value_type == BOOLEAN_VALUE_TYPE && !REPLACEMENTS[setting.value].nil?
+        setting.value = REPLACEMENTS[setting.value]
+      end
+    end
 
     class << self
 
@@ -53,7 +63,6 @@ module Refinery
       def set(name, value)
         scoping = (value[:scoping] if value.is_a?(Hash) && value.has_key?(:scoping))
         setting = where(name: name.to_s, scoping: scoping).first_or_initialize
-
         # you could also pass in {value: 'something', scoping: 'somewhere'}
         if value.is_a?(Hash)
           setting.assign_attributes(value)
@@ -94,8 +103,6 @@ module Refinery
 
     # This code maps the two boolean values
     # correctly so that a boolean is returned instead of a string.
-    REPLACEMENTS = {'true' => true, 'false' => false, '1' => true, '0' => false}
-
     def replacements!(current_value)
       if form_value_type == BOOLEAN_VALUE_TYPE
         # This bit handles true and false so that true and false

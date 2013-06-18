@@ -19,7 +19,7 @@ module ::Refinery
       end
 
       def find_setting
-        @setting = Refinery::Setting.find_by(slug: params[:id], scoping: nil) if params[:id].friendly_id?
+        @setting = Refinery::Setting.find_by(slug: params[:id], scoping: nil)
         @setting = Refinery::Setting.find_by(id: params[:id]) unless @setting || params[:id].friendly_id?
 
         @setting || error_404

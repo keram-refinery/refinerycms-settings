@@ -41,14 +41,13 @@ module Refinery
             page.should have_selector('#new_setting')
 
             within '#new_setting' do
-              fill_in 'Name', :with => 'test setting'
+              fill_in 'Name', :with => 'test setting uniq'
               fill_in 'Value', :with => 'true'
 
               click_button 'Save'
             end
 
-            page.should have_content("'Test Setting' was successfully added.")
-            page.should have_content('Test Setting - true')
+            page.should have_content('Test Setting Uniq - true')
           end
 
           it 'adds setting with slug unfriendly name', :js => true do
@@ -64,7 +63,6 @@ module Refinery
               click_button 'Save'
             end
 
-            page.should have_content("'Test/Setting' was successfully added.")
             page.should have_content('Test/Setting - true')
 
             visit refinery.edit_admin_setting_path(Refinery::Setting.last)
@@ -101,7 +99,6 @@ module Refinery
           end
         end
       end
-
 
     end
   end
