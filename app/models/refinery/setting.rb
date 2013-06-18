@@ -1,9 +1,10 @@
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
-    friendly_id :name, use: :slugged
 
     include Settings::Validators
+
+    friendly_id :name, use: :slugged
 
     DEFAULT_VALUE_TYPE = 'text_area'
     BOOLEAN_VALUE_TYPE = 'check_box'
