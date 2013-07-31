@@ -42,8 +42,7 @@
 
             if (that.is('initialisable')) {
                 that.is('initialising', true);
-                refinery.Object.attach(that.uid, holder);
-                that.holder = holder;
+                that.attach_holder(holder);
                 that.enable_value_type(input_value_type.find('option:selected').val());
 
                 input_value_type.on('change', function () {
