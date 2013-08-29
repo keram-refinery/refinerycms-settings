@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', '~> 3.0.0.dev', :git => 'git://github.com/keram-refinery/refinerycms.git', :branch => 'refinery_light'
+gem 'refinerycms', '~> 3.0.0.dev', github: 'keram-refinery/refinerycms', branch: 'refinery_light'
 
 # Add i18n support.
-gem 'refinerycms-i18n', '~> 3.0.0.dev', :git => 'git://github.com/keram-refinery/refinerycms-i18n.git', :branch => 'refinery_light'
+gem 'refinerycms-i18n', '~> 3.0.0.dev', github: 'keram-refinery/refinerycms-i18n', branch: 'refinery_light'
 
 gem 'quiet_assets', :group => :development
 
