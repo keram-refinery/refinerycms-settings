@@ -34,37 +34,31 @@ module Refinery
         end
 
         context "new/create" do
-          it "adds setting", :js => true do
+          before { Refinery::Setting.destroy_all }
+
+          it "adds setting" do
             visit refinery.admin_settings_path
             click_link "Add new setting"
 
-            page.should have_selector('iframe#dialog_iframe')
+            fill_in "setting_name", :with => "test setting"
+            fill_in "setting_value-text_area", :with => "true"
 
-            page.within_frame('dialog_iframe') do
-              fill_in "setting_name", :with => "test setting"
-              fill_in "setting_value", :with => "true"
+            click_button "Save"
 
-              click_button "submit_button"
-            end
-
-            page.should have_content("'Test Setting' was successfully added.")
+            # page.should have_content("'Test Setting' was successfully added.")
             page.should have_content("Test Setting - true")
           end
 
-          it "adds setting with slug unfriendly name", :js => true do
+          it "adds setting with slug unfriendly name" do
             visit refinery.admin_settings_path
             click_link "Add new setting"
 
-            page.should have_selector('iframe#dialog_iframe')
+            fill_in "setting_name", :with => "Test/Setting"
+            fill_in "setting_value-text_area", :with => "true"
 
-            page.within_frame('dialog_iframe') do
-              fill_in "setting_name", :with => "Test/Setting"
-              fill_in "setting_value", :with => "true"
+            click_button "Save"
 
-              click_button "submit_button"
-            end
-
-            page.should have_content("'Test/Setting' was successfully added.")
+            # page.should have_content("'Test/Setting' was successfully added.")
             page.should have_content("Test/Setting - true")
 
             visit refinery.edit_admin_setting_path(Refinery::Setting.last)

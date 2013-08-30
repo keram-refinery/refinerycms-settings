@@ -21,14 +21,14 @@
       <%= f.select :form_value_type, ::Refinery::Setting::FORM_VALUE_TYPES -%>
     </div>
     <div id="holder-check_box" class="field value-field" >
-      <%= f.check_box :value, :disabled => true, :id => 'value-check_box' -%>
+      <%= f.check_box :value, :disabled => true, :id => 'setting_value-check_box' -%>
       <%= f.label :value, t('enabled', :scope => 'refinery.admin.settings.form'),
-                  :for => 'value-check_box', :class => 'stripped' -%>
+                  :for => 'setting_value-check_box', :class => 'stripped' -%>
     </div>
     <div class="field value-field" id="holder-text_area">
-      <%= f.label :value, :for => 'value-text_area' -%>
+      <%= f.label :value, :for => 'setting_value-text_area' -%>
       <%= f.text_area :value, :value => @setting.form_value,
-                  :id => 'value-text_area', :class => 'widest', :rows => 3 -%>
+                  :id => 'setting_value-text_area', :class => 'widest', :rows => 3 -%>
     </div>
   <% else %>
     <div class="field">
