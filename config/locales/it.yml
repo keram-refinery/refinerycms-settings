@@ -1,7 +1,7 @@
 it:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Impostazioni
         description: Gestione delle impostazioni di Refinery
     admin:

@@ -1,7 +1,7 @@
 fi:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Asetukset
         description: Hallitse Refineryn asetuksia
     admin:

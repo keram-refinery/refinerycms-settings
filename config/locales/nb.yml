@@ -1,7 +1,7 @@
 nb:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Innstillinger
         description: Styr Refinery sine innstillinger
     admin:
@@ -27,4 +27,4 @@ nb:
         name: Navn
         value: Verdi
         restricted: Begrenset
-          
+

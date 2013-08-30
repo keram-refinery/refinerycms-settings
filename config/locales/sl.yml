@@ -1,7 +1,7 @@
 sl:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Nastavitve
     admin:
       settings:

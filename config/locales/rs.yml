@@ -1,7 +1,7 @@
 rs:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Podešavanja
         description: Menjaj Refinery podešavanja
     admin:

@@ -1,7 +1,7 @@
 da:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Indstillinger
         description: Vedligehold Refinery indstillinger
     admin:

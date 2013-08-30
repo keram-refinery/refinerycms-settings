@@ -1,7 +1,7 @@
 zh-TW:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: 設定
         description: 管理 Refinery 設定值
     admin:

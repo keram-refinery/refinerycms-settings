@@ -1,7 +1,7 @@
 zh-CN:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: 设置
         description: Refinery 设置管理
     admin:

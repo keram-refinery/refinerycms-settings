@@ -1,7 +1,7 @@
 es:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Configuración
         description: Gestionar opciones de Refinery
         article: femenino

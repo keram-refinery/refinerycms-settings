@@ -84,7 +84,7 @@ module Refinery
       context "when interface config is disabled" do
         before do
           Refinery::Settings.stub(:enable_interface).and_return(false)
-          Refinery::Plugins.registered.find_by_name("refinery_settings").hide_from_menu = true
+          Refinery::Plugins.registered.find_by_name("settings").hide_from_menu = true
         end
 
         it "does not show up in menu" do

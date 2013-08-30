@@ -1,7 +1,7 @@
 sk:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Nastavenia
         description: Správa nastavení
     admin:

@@ -1,7 +1,7 @@
 nl:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Instellingen
         description: Wijzig de instellingen van Refinery
     admin:

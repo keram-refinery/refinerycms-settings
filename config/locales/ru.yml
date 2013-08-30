@@ -1,7 +1,7 @@
 ru:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Параметры
         description: Управление параметрами Refinery
     admin:

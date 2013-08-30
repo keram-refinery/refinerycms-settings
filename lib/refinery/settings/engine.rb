@@ -8,10 +8,10 @@ module Refinery
 
       config.autoload_paths += %W( #{config.root}/lib )
 
-      initializer "register refinery_settings plugin" do
+      initializer "register refinery settings plugin" do
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
-          plugin.name = 'refinery_settings'
+          plugin.name = 'settings'
           plugin.position = 10000 # put settings plugin at end
           plugin.hide_from_menu = !Refinery::Settings.enable_interface
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.admin_settings_path }

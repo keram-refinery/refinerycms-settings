@@ -1,7 +1,7 @@
 pl:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: Ustawienia
         description: Zarządzaj ustawieniami Refinery
         article: neutral

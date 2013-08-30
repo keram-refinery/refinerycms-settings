@@ -1,7 +1,7 @@
 ko:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: 설정
         description: Refinery 설정을 관리합니다.
     admin:

@@ -1,7 +1,7 @@
 ja:
   refinery:
     plugins:
-      refinery_settings:
+      settings:
         title: 環境設定
         description: Refinery環境設定
     admin:
