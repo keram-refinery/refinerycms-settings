@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'refinerycms', '~> 2.718.0.dev', github: 'keram-refinery/refinerycms', branch: 'refinery_light'
+gem 'refinerycms-clientside', '~> 0.0.1', github: 'keram-refinery/refinerycms-clientside', branch: 'master'
 
 # Add i18n support.
 gem 'refinerycms-i18n', '~> 2.718.0.dev', github: 'keram-refinery/refinerycms-i18n', branch: 'refinery_light'
@@ -45,6 +46,8 @@ gem 'turbolinks'
 gem 'jquery-rails', '~> 3.0.4'
 
 gem 'will_paginate', '~> 3.0.5'
+gem 'i18n-iso639matrix', '~> 0.0.1', github: 'keram/i18n-iso639matrix', branch: 'master'
+
 
 # To use debugger
 # gem 'ruby-debug', :platform => :mri_18
