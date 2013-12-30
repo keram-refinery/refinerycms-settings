@@ -1,10 +1,12 @@
 
 (function (window, $) {
 
-// Source: ~/refinery-settings/scripts/admin/new_setting_form.js
+// Source: scripts/admin/new_setting_form.js
+(function () {
+
     /**
      * @constructor
-     * @class refinery.admin.NewSettingForm
+     * @class refinery.admin.settings.NewSettingForm
      * @extends {refinery.Object}
      */
     refinery.Object.create({
@@ -42,7 +44,7 @@
 
             if (that.is('initialisable')) {
                 that.is('initialising', true);
-                that.attach_holder(holder);
+                that.holder = holder;
                 that.enable_value_type(input_value_type.find('option:selected').val());
 
                 input_value_type.on('change', function () {
@@ -64,29 +66,35 @@
      * @param  {jQuery} holder
      * @return {undefined}
      */
-    refinery.admin.ui.settingsNewSettingForm = function (holder) {
-        var setting_form = holder.find('#new_setting');
-
-        if (setting_form.length > 0) {
-            refinery('admin.settings.NewSettingForm').init(setting_form);
-        }
+    refinery.admin.ui.settingsNewSettingForm = function (holder, ui) {
+        holder.find('#new_setting').each(function () {
+            ui.addObject(
+                refinery('admin.settings.NewSettingForm').init($(this))
+            );
+        });
     };
 
-// Source: ~/refinery-settings/scripts/admin/dialogs/settings_dialog.js
+}());
+
+// Source: scripts/admin/dialogs/settings_dialog.js
+(function (refinery) {
+
     /**
      * @constructor
-     * @class refinery.admin.SettingsDialog
      * @extends {refinery.admin.Dialog}
      * @param {Object=} options
+     * @return {refinery.admin.settings.SettingsDialog}
      */
     refinery.Object.create({
         objectPrototype: refinery('admin.Dialog', {
             title: t('refinery.admin.settings_dialog_title'),
-            url: '/refinery/dialogs/settings'
+            url_path: '/dialogs/settings'
         }, true),
 
         name: 'SettingsDialog',
 
         module: 'admin.settings'
     });
+
+}(refinery));
 }(window, jQuery));

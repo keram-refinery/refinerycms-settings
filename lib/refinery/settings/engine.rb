@@ -20,8 +20,7 @@ module Refinery
 
       config.after_initialize do
         Refinery.register_engine(Refinery::Settings)
-        # if you need debug js change .min to .all
-        Refinery::Core.config.register_admin_javascript('refinery/admin/refinery-settings.min')
+        Refinery::Core.config.register_admin_javascript('refinery/admin/settings/settings.min')
       end
     end
   end
