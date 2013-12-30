@@ -36,16 +36,15 @@ end
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass-rails', '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.1'
+gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier'
 
 gem 'turbolinks'
 
 gem 'jquery-rails', '~> 3.0.4'
-gem 'jquery-ui-rails', '~> 4.0.4'
 
-gem 'will_paginate', '~> 3.0.4'
+gem 'will_paginate', '~> 3.0.5'
 
 # To use debugger
 # gem 'ruby-debug', :platform => :mri_18
