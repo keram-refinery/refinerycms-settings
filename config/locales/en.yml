@@ -10,6 +10,7 @@ en:
         edit: Edit this setting
         actions:
           new: Add new setting
+          edit_setting: Edit setting
         records:
           empty_set: There are no settings yet.
           create_first: "Click '%{link}' to add your first setting."
@@ -21,7 +22,7 @@ en:
             restricted: This makes the setting only visible and editable by users who are superusers (like you).
   activerecord:
     models:
-      refinery/setting: setting
+      refinery/setting: Setting
     attributes:
       refinery/setting:
         name: Name
